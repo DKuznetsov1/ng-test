@@ -1,0 +1,18 @@
+<div>
+  <p>Name: {{product.name}}</p>
+  <p>description: {{product.description}}</p>
+  <p>price: {{product.price}}</p>
+  <p>category: {{product.category}}</p>
+  <span>is available:</span>
+  <input type="checkbox" [ngModel]="product.isAvailable" readonly disabled>
+  <p>ingredients:</p>
+  <ul>
+    <li *ngFor="let ingredient of product.ingredients">{{ingredient}}</li>
+  </ul>
+  <p>equivalents:</p>
+  <ul>
+      <li *ngFor="let equivalent of product.equivalents">{{equivalent}}</li>
+  </ul>
+  <input type="button" *ngIf="product.isAvailable" (click)="onBuy(product)" value="Buy it!">
+</div>
+<hr>

@@ -1,0 +1,6 @@
+<div *ngIf="hasItems()">
+  Your cart:
+  <ul>
+    <li *ngFor="let item of cartItems">{{item}}</li>
+  </ul>
+</div>
