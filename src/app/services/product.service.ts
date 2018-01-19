@@ -25,7 +25,15 @@ export class ProductService {
           ProductCategory.Drink,
           false,
           ['ingr3', 'ingr4'],
-          ['eq3', 'eq4'])
+          ['eq3', 'eq4']),
+      new Product(
+        'test name3',
+        'test desc3',
+        333,
+        ProductCategory.Drink,
+        true,
+        ['ingr5', 'ingr6'],
+        ['eq5', 'eq6'])
     ];
   }
 

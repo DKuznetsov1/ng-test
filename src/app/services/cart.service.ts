@@ -5,7 +5,7 @@ import { Product } from '../models/product.model';
 @Injectable()
 export class CartService {
 
-  private currentCart: Array<string> = ['Food1', 'Food2', 'Food3'];
+  private currentCart: Array<string> = [];
 
   constructor() { }
 
