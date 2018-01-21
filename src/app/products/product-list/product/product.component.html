@@ -1,0 +1,23 @@
+<div>
+  <p>Name: {{product.name}}</p>
+  <p>description: {{product.description}}</p>
+  <p>price: {{product.price}}</p>
+  <p>category: {{product.category}}</p>
+  <span>is available:</span>
+  <input type="checkbox" [checked]="product.isAvailable" readonly disabled>
+  <p>ingredients:</p>
+  <ul>
+    <li *ngFor="let ingredient of product.ingredients">{{ingredient}}</li>
+  </ul>
+  <p>equivalents:</p>
+  <ul>
+      <li *ngFor="let equivalent of product.equivalents">{{equivalent}}</li>
+  </ul>
+  <!-- Q: This one doesnt work for some reason (ngIf crashes when #amount is added)
+     <input type="number" *ngIf="product.isAvailable" #amount (click)="0" (keyup)="0" value="1"> -->
+  <div *ngIf="product.isAvailable">
+    <input type="number" #amount (click)="0" (keyup)="0" value="1">
+    <input type="button" (click)="addToCart(product, amount.value)" value="Add to cart">
+  </div>
+</div>
+<hr>

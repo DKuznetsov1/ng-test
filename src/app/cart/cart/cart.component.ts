@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CartItem } from '../../models/cart-item.model';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cartItems: Array<string>;
+  cartItems: Array<CartItem>;
 
   constructor(public cartService: CartService) { }
 
@@ -20,5 +21,12 @@ export class CartComponent implements OnInit {
 
   hasItems() {
     return this.cartItems.length > 0;
+  }
+
+  onRemoveCartItem(cartItem: CartItem) {
+    const index = this.cartItems.indexOf(cartItem);
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+    }
   }
 }

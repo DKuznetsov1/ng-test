@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CartService } from './services';
-import { Product } from './models/product.model';
+import { OrderItem } from './models/order-item.model';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
     console.log('AppComponent init');
   }
 
-  buy(product: Product) {
+  onAddToCart(orderItem: OrderItem) {
     console.log('adding to cart.');
-    this.cartService.add(product);
+    this.cartService.add(orderItem);
   }
 }

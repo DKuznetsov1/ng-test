@@ -3,6 +3,6 @@
   Welcome to {{ title }}!
 </h1>
  
-<app-product-list (buy)="buy($event)"></app-product-list>
+<app-product-list (addToCartEvent)="onAddToCart($event)"></app-product-list>
  
 <app-cart></app-cart>

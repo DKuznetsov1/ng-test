@@ -1,9 +1,10 @@
 /**
 * Product Model
 */
+import { IProduct } from './iproduct.interface';
 import { ProductCategory } from './product-category.model';
 
-export class Product {
+export class Product implements IProduct {
   constructor(
     public name: string,
     public description: string,
@@ -11,7 +12,7 @@ export class Product {
     public category: ProductCategory,
     public isAvailable: boolean,
     public ingredients: Array<string>,
-    public equivalents: Array<string>,
+    public equivalents: Array<string>
   ) {
   }
 }
