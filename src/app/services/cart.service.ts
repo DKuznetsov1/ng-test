@@ -27,6 +27,10 @@ export class CartService {
     }
   }
 
+  emptyCart() {
+    this.currentCart.splice(0, this.currentCart.length);
+  }
+
   totalPrice() {
     return this.currentCart.map(x => x.orderItem.product.price * x.orderItem.amount).reduce((x, y) => x + y);
   }

@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+:host:not(.highlighted) input[type=button] {
+  display: none;
+}
+
+input[type=number] {
+  width: 70px;
+}

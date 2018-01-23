@@ -1,0 +1,30 @@
+:host {
+  width: 49%;
+  float: left;
+}
+
+p.caption {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+li {
+  padding: 3px;
+}
+
+li:nth-child(even) {
+  background-color: #ebebeb;
+}
+
+li:hover {
+  background-color: #ffedd2;
+}
+
+li.selected {
+  background-color: #ffd89e;
+}

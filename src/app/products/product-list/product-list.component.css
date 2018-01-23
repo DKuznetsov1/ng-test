@@ -2,3 +2,7 @@
   width: 49%;
   float:left;
 }
+
+ul { 
+  list-style: none;
+}

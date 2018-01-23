@@ -1,0 +1,8 @@
+input[type=number] {
+  width: 70px;
+}
+
+p.caption {
+  font-size: 25px;
+  font-weight: bold;
+}

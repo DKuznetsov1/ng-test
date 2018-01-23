@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CartService } from './services';
+import { CartService, OrderService } from './services';
 import { OrderItem } from './models/order-item.model';
+import { Order } from './models/order.model';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,9 @@ import { OrderItem } from './models/order-item.model';
 export class AppComponent implements OnInit {
   title = 'DK shop';
 
-  constructor(public cartService: CartService) {
-
+  constructor(
+    public cartService: CartService,
+    public orderService: OrderService) {
   }
 
   ngOnInit() {
@@ -22,5 +24,17 @@ export class AppComponent implements OnInit {
   onAddToCart(orderItem: OrderItem) {
     console.log('adding to cart.');
     this.cartService.add(orderItem);
+  }
+
+  onBuy(orderItems: Array<OrderItem>) {
+    console.log('buy cart.');
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), true));
+    this.cartService.emptyCart();
+  }
+
+  onCancelCart(orderItems: Array<OrderItem>) {
+    console.log('cancel cart.');
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), false));
+    this.cartService.emptyCart();
   }
 }

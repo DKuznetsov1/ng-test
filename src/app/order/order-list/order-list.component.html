@@ -1,0 +1,13 @@
+<div class="margin-top-40" *ngIf="hasItems()">
+    <p class="caption">Previous orders:</p>
+    <ul>
+      <li *ngFor="let item of previousOrders"
+        [class.success]="item.isPaymentCompleted"
+        [class.failed]="!item.isPaymentCompleted">
+        <app-order 
+          [order]="item" 
+          ></app-order>
+      </li>
+    </ul>
+</div>
+  

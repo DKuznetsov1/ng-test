@@ -1,0 +1,21 @@
+<div *ngIf="hasItems()">
+  <p class="caption">Your cart:</p>
+  <ul>
+    <li *ngFor="let item of cartItems" [ngClass]="{ selected: isSelected(item) }">
+      <app-cart-item 
+        [cartItem]="item" 
+        (removeEvent)="onRemoveCartItem($event)"
+        (selectEvent)="onSelect($event)"
+        ></app-cart-item>
+    </li>
+  </ul>
+  <p>Total items: {{cartService.totalItems()}}</p>
+  <p>Total price: {{cartService.totalPrice()}}</p>
+
+  <div class="form-inline">
+    <input type="button" class="btn btn-success" value="Buy it!"
+      (click)="buy()">
+    <input type="button" class="btn btn-danger" value="Cancel"
+      (click)="cancelCart()">
+  </div>
+</div>

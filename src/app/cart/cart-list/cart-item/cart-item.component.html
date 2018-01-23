@@ -1,0 +1,13 @@
+<div class="form-inline">
+  <span style="font-size: 20px"><b>{{cartItem.orderItem.product.name}}</b></span>
+  <input type="number"
+    class="form-control"
+    min="1"
+    [(ngModel)]="cartItem.orderItem.amount"
+    [disabled]="!cartItem.isEditMode">
+  <input type="button" class="btn btn-primary"
+    [value]="getEditButtonText()" 
+    (click)="toggleEditMode()">
+  <input type="button" class="btn btn-primary" value="Remove" 
+    (click)="remove()">
+</div>

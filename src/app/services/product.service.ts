@@ -12,28 +12,38 @@ export class ProductService {
     return [
       new Product(
         'test name1',
-        'test desc1',
         111,
         ProductCategory.Food,
         true,
         ['ingr1', 'ingr2'],
+        'test desc1',
         ['eq1', 'eq2']),
       new Product(
           'test name2',
-          'test desc2',
           222,
           ProductCategory.Drink,
-          false,
+          true,
           ['ingr3', 'ingr4'],
+          'test desc2',
           ['eq3', 'eq4']),
       new Product(
         'test name3',
-        'test desc3',
         333,
         ProductCategory.Drink,
         true,
-        ['ingr5', 'ingr6'],
-        ['eq5', 'eq6'])
+        ['ingr5', 'ingr6']),
+      new Product(
+        'test name4',
+        444,
+        ProductCategory.Drink,
+        true,
+        ['ingr7', 'ingr8']),
+      new Product(
+        'test name5',
+        555,
+        ProductCategory.Drink,
+        false,
+        ['ingr9', 'ingr10'])
     ];
   }
 
