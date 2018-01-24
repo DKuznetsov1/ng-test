@@ -21,11 +21,11 @@ export class ProductComponent implements OnInit {
     console.log('ProductComponent init');
   }
 
-  addToCart(product: IProduct, amount: string) {
-    this.addToCartEvent.emit(new OrderItem(product, parseFloat(amount)));
+  addToCart(amount: string) {
+    this.addToCartEvent.emit(new OrderItem(this.product, parseFloat(amount)));
   }
 
-  hasEquivalents(product: IProduct): boolean {
+  hasEquivalents(): boolean {
     return typeof this.product.equivalents !== 'undefined' && this.product.equivalents.length > 0;
   }
 
@@ -33,8 +33,8 @@ export class ProductComponent implements OnInit {
     return this.product.description || this.noDescription;
   }
 
-  getDisabledAttrForProduct(product: IProduct) {
-    return product.isAvailable ? null : true;
+  getDisabledAttrValue() {
+    return this.product.isAvailable ? null : true;
   }
 
   getProductCategoryEnumString(category: ProductCategory) {

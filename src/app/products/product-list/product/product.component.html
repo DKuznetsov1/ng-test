@@ -8,18 +8,18 @@
   </p>
   
   <p><b>ingredients: </b>{{product.ingredients.join(', ')}}</p>
-  <p *ngIf="hasEquivalents(product)"><b>equivalents: </b>{{product.equivalents.join(', ')}}</p>
+  <p *ngIf="hasEquivalents()"><b>equivalents: </b>{{product.equivalents.join(', ')}}</p>
   <!-- Q: This one doesnt work for some reason (ngIf crashes when #amount is added)
      <input type="number" *ngIf="product.isAvailable" #amount (click)="0" (keyup)="0" value="1"> -->
   <div class="form-inline">
-    <input type="number" value="1" class="form-control"
+    <input type="number" value="1" class="form-control" min="1"
       #amount 
       (click)="0" 
       (keyup)="0"
-      [attr.disabled]="getDisabledAttrForProduct(product)">
+      [attr.disabled]="getDisabledAttrValue()">
     <input type="button" value="Add to cart" class="btn btn-primary" 
-      [attr.disabled]="getDisabledAttrForProduct(product)"
-      (click)="addToCart(product, amount.value)">
+      [attr.disabled]="getDisabledAttrValue()"
+      (click)="addToCart(amount.value)">
   </div>
 </div>
 <hr>
