@@ -13,6 +13,6 @@
   <ul>
       <li *ngFor="let equivalent of product.equivalents">{{equivalent}}</li>
   </ul>
-  <input type="button" *ngIf="product.isAvailable" (click)="onBuy(product)" value="Buy it!">
+  <input type="button" *ngIf="product.isAvailable" (click)="onBuy()" value="Buy it!">
 </div>
 <hr>

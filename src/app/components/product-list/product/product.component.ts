@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
     console.log('ProductComponent init');
   }
 
-  onBuy(product: Product) {
-    this.buy.emit(product);
+  onBuy() {
+    this.buy.emit(this.product);
   }
 }
