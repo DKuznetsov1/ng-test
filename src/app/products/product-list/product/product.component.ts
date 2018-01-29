@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
     return this.product.isAvailable ? null : true;
   }
 
-  getProductCategoryEnumString(category: ProductCategory) {
-    return ProductCategory[category];
+  getProductCategoryEnumString(): string {
+    return ProductCategory[this.product.category];
   }
 }
