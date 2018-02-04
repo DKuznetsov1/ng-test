@@ -1,8 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
-import { OrderItem } from '../../models/order-item.model';
-import { IProduct } from '../../models/iproduct.interface';
-import { ProductService } from '../../services/product.service';
+import { OrderItem, IProduct } from '../../../models';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-product-list',

@@ -6,3 +6,7 @@ p.caption {
   font-size: 25px;
   font-weight: bold;
 }
+
+.product-container {
+  padding: 5px;
+}

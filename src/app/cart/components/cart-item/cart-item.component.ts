@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
 
-import { CartItem } from '../../../models/cart-item.model';
+import { CartItem } from '../../../models';
 
 @Component({
   selector: 'app-cart-item',

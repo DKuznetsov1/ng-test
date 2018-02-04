@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CartService, OrderService } from './services';
-import { OrderItem } from './models/order-item.model';
-import { Order } from './models/order.model';
+import { OrderItem, Order } from './models';
 
 @Component({
   selector: 'app-root',

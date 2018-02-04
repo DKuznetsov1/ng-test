@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { CartItem } from '../../models/cart-item.model';
-import { OrderItem } from '../../models/order-item.model';
-import { CartService } from '../../services/cart.service';
-import { Product } from '../../models/product.model';
+import { CartItem, OrderItem, Product } from '../../../models';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -59,5 +57,9 @@ export class CartListComponent implements OnInit {
   cancelCart() {
     const orderItems = this.cartItems.map(x => x.orderItem);
     this.cancelCartEvent.emit(orderItems);
+  }
+
+  clearCart() {
+    this.cartService.emptyCart();
   }
 }

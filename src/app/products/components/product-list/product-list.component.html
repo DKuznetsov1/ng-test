@@ -1,7 +1,7 @@
 <div>
   <ul>
     <li *ngFor="let product of products" >
-      <app-product 
+      <app-product
         [product]="product"
         (addToCartEvent)="onAddToCart($event)"></app-product>
     </li>
