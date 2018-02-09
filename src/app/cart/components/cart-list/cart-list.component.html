@@ -3,9 +3,16 @@
     Your cart:
     <input type="button" class="btn btn-danger" value="Clear"
       (click)="clearCart()">
+    Sort by:
+    <select [(ngModel)]="sortCriteria">
+      <option *ngFor="let option of sortOptions" value="{{ option.property }}">{{ option.displayName }}</option>
+    </select>
+
+    <input type="button" class="btn btn-primary" value="{{ getSortDirectionString() }}"
+      (click)="toggleSortDirection()">
   </p>
   <ul>
-    <li *ngFor="let item of cartItems" [ngClass]="{ selected: isSelected(item) }">
+    <li *ngFor="let item of cartItems | cartsort : sortCriteria : isDescending" [ngClass]="{ selected: isSelected(item) }">
       <app-cart-item 
         [cartItem]="item" 
         (removeEvent)="onRemoveCartItem($event)"

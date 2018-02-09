@@ -1,4 +1,3 @@
 <div>
-    <p><b>Order #{{order.id}} (${{ orderPrice() }}), Completed: {{ getCompletedValue() }}</b></p>
-    
+    <p><b>Order #{{order.id}} (${{ orderPrice() }}), Processed: {{ getCompletedValue() }} (on {{ order.orderDate | async | date : 'medium' }})</b></p>
 </div>

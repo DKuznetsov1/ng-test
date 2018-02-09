@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { CartItem, OrderItem, Product } from '../../../models';
 import { CartService } from '../../../services/cart.service';
@@ -16,6 +17,9 @@ export class CartListComponent implements OnInit {
 
   cartItems: Array<CartItem>;
 
+  public sortCriteria: string;
+  public isDescending: boolean;
+  public sortOptions: Array<{ property: string, displayName: string}>;
   private selectedItem: CartItem;
   private highlightedItem: CartItem;
 
@@ -24,6 +28,20 @@ export class CartListComponent implements OnInit {
   ngOnInit() {
     console.log('CartComponent init');
     this.cartItems = this.cartService.getAll();
+    this.sortOptions = [{
+      property: 'orderItem.product.name',
+      displayName: 'name'
+    },
+    {
+      property: 'orderItem.amount',
+      displayName: 'amount'
+    },
+    {
+      property: 'orderItem.price',
+      displayName: 'price'
+    }];
+
+    this.isDescending = true;
   }
 
   hasItems() {
@@ -61,5 +79,18 @@ export class CartListComponent implements OnInit {
 
   clearCart() {
     this.cartService.emptyCart();
+  }
+
+  sortBy (criteria: string) {
+    this.sortCriteria = criteria;
+  }
+
+  toggleSortDirection () {
+    console.log(this.sortCriteria);
+    this.isDescending = !this.isDescending;
+  }
+
+  getSortDirectionString() {
+    return this.isDescending ? 'DESC' : 'ASC';
   }
 }

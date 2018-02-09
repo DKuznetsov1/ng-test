@@ -1,8 +1,8 @@
 <div class="product-container" appBorder="rgba(158, 208, 180, 0.5)">
   <p class="caption">{{product.name}}</p>
   <p><b>description: </b>{{getDescription()}}</p>
-  <p><b>price: </b>{{product.price}}</p>
-  <p><b>category: </b>{{getProductCategoryEnumString()}}</p>
+  <p><b>price: </b>{{product.price | currency :  'UAH' }}</p>
+  <p><b>category: </b>{{getProductCategoryEnumString() | uppercase }}</p>
   <p><b>is available:</b>
       <input type="checkbox" [checked]="product.isAvailable" readonly disabled>
   </p>
@@ -14,9 +14,9 @@
       #amount 
       (click)="0" 
       (keyup)="0"
-      [attr.disabled]="getDisabledAttrValue()">
+      [disabled]="getDisabledAttrValue()">
     <input type="button" value="Add to cart" class="btn btn-primary" 
-      [attr.disabled]="getDisabledAttrValue()"
+      [disabled]="getDisabledAttrValue()"
       (click)="addToCart(amount.value)">
   </div>
 </div>

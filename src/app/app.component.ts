@@ -27,13 +27,13 @@ export class AppComponent implements OnInit {
 
   onBuy(orderItems: Array<OrderItem>) {
     console.log('buy cart.');
-    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), true));
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, true));
     this.cartService.emptyCart();
   }
 
   onCancelCart(orderItems: Array<OrderItem>) {
     console.log('cancel cart.');
-    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), false));
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, false));
     this.cartService.emptyCart();
   }
 }

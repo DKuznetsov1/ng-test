@@ -9,4 +9,8 @@ export class OrderItem {
     public amount: number
   ) {
   }
+
+  price(): number {
+    return this.amount * this.product.price;
+  }
 }

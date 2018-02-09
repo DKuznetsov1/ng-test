@@ -31,7 +31,7 @@ export class CartService {
   }
 
   totalPrice() {
-    return this.currentCart.map(x => x.orderItem.product.price * x.orderItem.amount).reduce((x, y) => x + y);
+    return this.currentCart.map(x => x.orderItem.price()).reduce((x, y) => x + y);
   }
 
   totalItems() {

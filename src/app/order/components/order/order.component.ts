@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   }
 
   getCompletedValue(): string {
-    return this.order.isPaymentCompleted ? 'Yes' : 'No';
+    return this.order.isPaymentCompleted == null ? '?' : this.order.isPaymentCompleted ? 'Yes' : 'No';
   }
 
 }

@@ -7,7 +7,8 @@ export class Order {
   constructor(
     public id: number,
     public orderItems: Array<OrderItem>,
-    public isPaymentCompleted: boolean = false
+    public orderDate: Promise<Date>,
+    public isPaymentCompleted?: boolean
   ) {
   }
 

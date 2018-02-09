@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { Product, ProductCategory } from '../models';
+import { Product, ProductCategory, IProduct } from '../models';
 
 @Injectable()
 export class ProductService {
 
   constructor() { }
 
-  getProducts() {
+  getProducts(): Array<IProduct> {
     return [
       new Product(
         'test name1',
