@@ -2,7 +2,7 @@
 Shows the items on sale. Allows to add them to the cart and updates your cart then. If you add the same product several times it will merge it into one item. 
 Allows to remove item from cart or edit amount of specific product in cart. Calculates cart item count and total price. Shows previous orders.
 
-#Pipes
+# Pipes
 Pipes are applied for:
 - product price (UAH currency code)
 - product category (uppercasing)
