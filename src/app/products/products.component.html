@@ -1,0 +1,8 @@
+<div class="col-md-5">
+  <router-outlet></router-outlet>
+</div>
+<div class="col-md-7">
+  <router-outlet name="details"
+    (activate)='onActivate($event)'
+    (deactivate)='onDeactivate($event)'></router-outlet>
+</div>

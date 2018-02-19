@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { CartItem } from '../../models';
 
 @Pipe({
-  name: 'cartsort',
-  pure: false
+  name: 'cartsort'
 })
 export class CartSortPipe implements PipeTransform {
 

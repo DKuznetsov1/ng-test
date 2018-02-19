@@ -7,16 +7,6 @@ p.caption {
   margin-top: 40px;
 }
 
-:host {
-  width: 49%;
-  float: left;
-}
-
-ul {
-  list-style: none;
-  padding: 0px;
-}
-
 li {
   margin: 0px;
   padding: 5px;

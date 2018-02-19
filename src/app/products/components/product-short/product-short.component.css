@@ -1,0 +1,19 @@
+input[type=number] {
+  width: 70px;
+}
+
+p.caption {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.product-container {
+  transition-duration: 300ms;
+  padding: 5px;
+  padding-right: 45px;
+}
+
+.product-container:hover {
+  padding-right: 5px;
+  padding-left: 45px;
+}

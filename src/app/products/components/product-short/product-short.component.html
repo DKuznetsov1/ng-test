@@ -1,0 +1,19 @@
+<div class="product-container" appBorder="rgba(158, 208, 180, 0.5)" (click)="selectItem()">
+  <p class="caption">{{product.name}}</p>
+  <!-- <p><b>id: </b>{{ product.id }}</p> -->
+  <p><b>description: </b>{{getDescription()}}</p>
+  <p><b>price: </b>{{product.price | currency :  'UAH' }}</p>
+  <p><b>category: </b>{{getProductCategoryEnumString() | uppercase }}</p>
+  
+  <!-- <div class="form-inline">
+    <input type="number" value="1" class="form-control" min="1"
+      #amount 
+      (click)="0" 
+      (keyup)="0"
+      [disabled]="getDisabledAttrValue()">
+    <input type="button" value="Add to cart" class="btn btn-primary" 
+      [disabled]="getDisabledAttrValue()"
+      (click)="addToCart(amount.value)">
+  </div> -->
+</div>
+<hr>

@@ -1,8 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { CartItem, OrderItem, Product } from '../../../models';
-import { CartService } from '../../../services/cart.service';
+import { CartItem, OrderItem, Order, Product } from '../../../models';
+import { CartService, OrderService } from '../../../services';
 
 @Component({
   selector: 'app-cart',
@@ -10,10 +11,6 @@ import { CartService } from '../../../services/cart.service';
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent implements OnInit {
-  @Output() buyEvent: EventEmitter<Array<OrderItem>> =
-    new EventEmitter<Array<OrderItem>>();
-  @Output() cancelCartEvent: EventEmitter<Array<OrderItem>> =
-    new EventEmitter<Array<OrderItem>>();
 
   cartItems: Array<CartItem>;
 
@@ -23,10 +20,13 @@ export class CartListComponent implements OnInit {
   private selectedItem: CartItem;
   private highlightedItem: CartItem;
 
-  constructor(public cartService: CartService) { }
+  constructor(
+    public cartService: CartService,
+    public orderService: OrderService,
+    public router: Router) { }
 
   ngOnInit() {
-    console.log('CartComponent init');
+    // console.log('CartComponent init');
     this.cartItems = this.cartService.getAll();
     this.sortOptions = [{
       property: 'orderItem.product.name',
@@ -68,13 +68,20 @@ export class CartListComponent implements OnInit {
   }
 
   buy() {
+    console.log('buy cart.');
     const orderItems = this.cartItems.map(x => x.orderItem);
-    this.buyEvent.emit(orderItems);
+
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, true));
+    this.cartService.emptyCart();
+    this.router.navigate(['orders']);
   }
 
   cancelCart() {
+    console.log('cancel cart.');
     const orderItems = this.cartItems.map(x => x.orderItem);
-    this.cancelCartEvent.emit(orderItems);
+
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, false));
+    this.cartService.emptyCart();
   }
 
   clearCart() {

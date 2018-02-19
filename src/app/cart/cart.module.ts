@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CartListComponent } from './components/cart-list/cart-list.component';
+import { CartListComponent, CartItemComponent } from './components';
 import { CartService } from '../services/cart.service';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartSortPipe } from './pipes/cart-sort.pipe';
+import { CartRoutingModule } from './cart.routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+
+    CartRoutingModule
   ],
   declarations: [CartListComponent, CartItemComponent, CartSortPipe],
   providers: [CartService],

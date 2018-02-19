@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { OrderItem, IProduct } from '../../../models';
-import { ProductService } from '../../../services/product.service';
+import { ProductService, CartService } from '../../../services';
 
 @Component({
   selector: 'app-product-list',
@@ -9,18 +10,27 @@ import { ProductService } from '../../../services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  @Output() addToCartEvent: EventEmitter<OrderItem> = new EventEmitter<OrderItem>();
 
   products: Array<IProduct>;
 
-  constructor(public productService: ProductService) { }
+  constructor(
+    public cartService: CartService,
+    public productService: ProductService,
+    public router: Router) { }
 
-  ngOnInit() {
-    console.log('ProductListComponent init');
-    this.products = this.productService.getProducts();
+  async ngOnInit() {
+    // console.log('ProductListComponent init');
+    this.products = await this.productService.getProducts();
   }
 
   onAddToCart(orderItem: OrderItem) {
-    this.addToCartEvent.emit(orderItem);
+    console.log('adding to cart.');
+    this.cartService.add(orderItem);
   }
+
+  onSelect(product: IProduct) {
+    console.log('product select');
+    this.router.navigate(['home', { outlets: { details: ['product', product.id ] } }]);
+  }
+
 }

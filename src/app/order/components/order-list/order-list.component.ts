@@ -15,7 +15,7 @@ export class OrderListComponent implements OnInit {
   constructor(public orderService: OrderService) { }
 
   ngOnInit() {
-    console.log('CartComponent init');
+    // console.log('CartComponent init');
     this.previousOrders = this.orderService.getAll();
   }
 

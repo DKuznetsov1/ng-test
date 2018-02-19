@@ -1,9 +1,11 @@
 <div>
   <ul>
     <li *ngFor="let product of products" >
-      <app-product
+      <app-product-short
         [product]="product"
-        (addToCartEvent)="onAddToCart($event)"></app-product>
+        (addToCartEvent)="onAddToCart($event)"
+        (select)="onSelect($event)"
+        ></app-product-short>
     </li>
   </ul>
 </div>

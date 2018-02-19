@@ -3,24 +3,29 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct, ProductCategory, OrderItem } from '../../../models';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-product-short',
+  templateUrl: './product-short.component.html',
+  styleUrls: ['./product-short.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductShortComponent implements OnInit {
   @Input() product: IProduct;
   @Output() addToCartEvent: EventEmitter<OrderItem> = new EventEmitter<OrderItem>();
+  @Output() select: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
   private readonly noDescription: string = 'Description missing';
 
   constructor() { }
 
   ngOnInit() {
-    console.log('ProductComponent init');
+    // console.log('ProductShortComponent init');
   }
 
   addToCart(amount: string) {
     this.addToCartEvent.emit(new OrderItem(this.product, parseFloat(amount)));
+  }
+
+  selectItem() {
+    this.select.emit(this.product);
   }
 
   hasEquivalents(): boolean {

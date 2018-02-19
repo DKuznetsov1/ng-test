@@ -16,7 +16,7 @@ export class CartService {
 
   add(orderItem: OrderItem) {
     const existingItem = this.currentCart.find((x) => {
-      return x.orderItem.product.name === orderItem.product.name;
+      return x.orderItem.product.id === orderItem.product.id;
     });
 
     if (typeof existingItem !== 'undefined') {

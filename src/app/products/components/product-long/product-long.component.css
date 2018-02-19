@@ -10,3 +10,10 @@ p.caption {
 .product-container {
   padding: 5px;
 }
+
+:host {
+  position: fixed;
+  height: 100%;
+  border-left: 2px solid #cecece;
+  padding-left: 20px;
+}
