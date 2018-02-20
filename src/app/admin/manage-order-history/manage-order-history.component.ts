@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { OrderService } from './../../services';
 @Component({
   selector: 'app-manage-order-history',
   templateUrl: './manage-order-history.component.html',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageOrderHistoryComponent implements OnInit {
 
-  constructor() { }
+users: Array<string>;
+
+  constructor(
+    private orderService: OrderService) { }
 
   ngOnInit() {
   }

@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions, PreloadAllModules } from '@angular/router';
 
-// import { MessagesComponent, LoginComponent, AuthGuard, CustomPreloadingStrategyService } from './core';
-// import { AboutComponent, PageNotFoundComponent } from './components';
-
 import { AppComponent } from './app.component';
 import { LoginComponent, AuthGuard } from './core';
 import { PageNotFoundComponent } from './components';
@@ -36,7 +33,7 @@ export const appRouterComponents = [AppComponent, PageNotFoundComponent];
 
 const extraOptions: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
-  enableTracing: true
+  // enableTracing: true
 };
 
 @NgModule({

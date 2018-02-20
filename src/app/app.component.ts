@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CartService, OrderService } from './services';
+import { CartService, OrderService, UserService } from './services';
 import { OrderItem, Order } from './models';
 
 @Component({
@@ -12,12 +12,15 @@ export class AppComponent implements OnInit {
   title = 'DK shop';
 
   constructor(
+    public userService: UserService,
     public cartService: CartService,
     public orderService: OrderService) {
   }
 
   ngOnInit() {
     // console.log('AppComponent init');
+    const user = this.userService.createAnonymousUser();
+    this.userService.setUser(user);
   }
 
 }

@@ -1,10 +1,10 @@
 /**
-* User Options Model
+* User Model
 */
 
-export class UserOptions {
+export class User {
   constructor(
-    public id: number,
+    public id: string,
     public login: string,
     public email: string
   ) {

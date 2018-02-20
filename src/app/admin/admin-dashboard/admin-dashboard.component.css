@@ -1,0 +1,11 @@
+table, th, td {
+  border: 1px solid black;
+}
+
+td, th {
+  padding: 5px;
+}
+
+.current {
+  background-color: #757575;
+}

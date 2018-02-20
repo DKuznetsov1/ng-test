@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { UserService } from '../../services';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,25 +12,24 @@ import { map } from 'rxjs/operators';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  sessionId: Observable<string>;
-  token: Observable<string>;
+  users: Array<User>;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // Capture the session ID if available
-    this.sessionId = this.route
-      .queryParamMap
-      .pipe(
-        map(params => params.get('session_id') || 'None')
-      );
+    console.log('AdminDashboardComponent init');
+    const usersObject = this.userService.getAll();
+    this.users = [];
 
-    // Capture the fragment if available
-    this.token = this.route
-      .fragment
-      .pipe(
-        map(fragment => fragment || 'None')
-      );
+    Object.keys(usersObject).forEach((x) => {
+      this.users.push(usersObject[x]);
+    });
+  }
+
+  removeUsersExceptCurrent() {
+    this.userService.removeAllExceptCurrent();
   }
 
 }

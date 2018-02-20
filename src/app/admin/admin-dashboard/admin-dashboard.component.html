@@ -1,1 +1,19 @@
 <h2>Admin Dashboard</h2>
+
+<button class="btn btn-danger" (click)="removeUsersExceptCurrent()">Remove all users (except current)</button>
+<br/>
+
+<table>
+  <tbody>
+    <tr>
+      <th>ID</th>
+      <th>Login</th>
+      <th>Email</th>
+    </tr>
+    <tr *ngFor="let user of users" [class.current]="user.id == userService.currentUser.id">
+        <td>{{ user.id }}</td>
+        <td>{{ user.login }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+  </tbody>
+</table>
