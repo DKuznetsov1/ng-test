@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 import { UserService } from '../../services';
 import { User } from '../../models';
 
@@ -10,22 +9,29 @@ import { User } from '../../models';
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit, OnDestroy {
 
   users: Array<User>;
 
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute) { }
+  sub: Subscription;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     console.log('AdminDashboardComponent init');
-    const usersObject = this.userService.getAll();
-    this.users = [];
+    const usersObject = this.userService.getAllSubscription();
+    this.users = this.userService.getAll();
 
-    Object.keys(usersObject).forEach((x) => {
-      this.users.push(usersObject[x]);
-    });
+    this.sub = usersObject.subscribe(
+      usersUpdated => {
+        this.users = usersUpdated;
+      },
+      err => console.log(err)
+    );
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   removeUsersExceptCurrent() {

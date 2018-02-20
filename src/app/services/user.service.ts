@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 import { User } from '../models';
 import { LocalStorageService } from './';
 
 @Injectable()
 export class UserService {
   private readonly usersKey = 'users';
+
   currentUser: User;
+  users: Subject<User[]>;
+  users$: Observable<User[]>;
 
   constructor(
     public localStorageService: LocalStorageService
-  ) { }
+  ) {
+    this.users = new Subject<User[]>();
+    this.users$ = this.users.asObservable();
+  }
 
   createAnonymousUser(): User {
     return this.createUser('Anonymous');
@@ -33,10 +42,23 @@ export class UserService {
     const users = {};
     users[this.currentUser.id] = this.currentUser;
     this.localStorageService.setItem(this.usersKey, JSON.stringify(users));
+
+    this.publishUsersChange(users);
+  }
+
+  getAllSubscription(): Observable<User[]> {
+    return this.users$;
   }
 
   getAll(): Array<User> {
-    return this.usersObjectExist() ? JSON.parse(this.localStorageService.getItem(this.usersKey)) : [];
+    const usersObject = this.usersObjectExist() ? JSON.parse(this.localStorageService.getItem(this.usersKey)) : {};
+
+    const users = [];
+    Object.keys(usersObject).forEach((x) => {
+      users.push(usersObject[x]);
+    });
+
+    return users;
   }
 
   private createUser(prefix: string): User {
@@ -47,16 +69,26 @@ export class UserService {
       this.localStorageService.setItem(this.usersKey, '{}');
     }
 
-    const users = this.getAll();
+    const users = JSON.parse(this.localStorageService.getItem(this.usersKey));
 
     users[user.id] = user;
     this.localStorageService.setItem(this.usersKey, JSON.stringify(users));
+
+    this.publishUsersChange(users);
 
     return user;
   }
 
   private usersObjectExist(): boolean {
-    return typeof this.localStorageService.getItem(this.usersKey) !== 'undefined';
+    return this.localStorageService.getItem(this.usersKey);
+  }
+
+  private publishUsersChange(usersObject: Object): void {
+    const users = [];
+    Object.keys(usersObject).forEach((x) => {
+      users.push(usersObject[x]);
+    });
+    this.users.next(users);
   }
 
 }

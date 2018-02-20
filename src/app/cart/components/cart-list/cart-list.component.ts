@@ -82,6 +82,7 @@ export class CartListComponent implements OnInit {
 
     this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, false));
     this.cartService.emptyCart();
+    this.router.navigate(['home']);
   }
 
   clearCart() {

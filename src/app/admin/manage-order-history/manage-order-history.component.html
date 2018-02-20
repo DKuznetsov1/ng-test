@@ -1,3 +1,12 @@
-<p>
-  manage-users works!
-</p>
+<div>
+  <h2>Browse order history for user</h2>
+  <select #selected class="form-control" (change)="getOrderForUser(selected.value)">
+    <option *ngFor="let user of users">{{ user }}</option>
+  </select>
+  <div class="col-md-8 history-caption">
+    <p>Order history for user: <b>{{ selected.value }}</b></p>
+    <ul>
+      <li *ngFor="let order of userOrders"> <p><b>Order #{{order.id}} (${{ order.orderPrice() }})</b></p></li>
+    </ul>
+  </div>
+</div>

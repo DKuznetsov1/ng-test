@@ -30,7 +30,6 @@ export class ProductLongComponent implements OnInit, OnDestroy {
     this._sub = this.route.paramMap
     .pipe(
       switchMap((params: Params) => {
-        console.log('ddd');
         return this.productService.getById(+params.get('id'));
       }))
     .subscribe(

@@ -18,6 +18,20 @@ export class OrderService {
     return this.previousOrders;
   }
 
+  getAllForUser(userId: string) {
+    const ordersExists = this.localStorageService.getItem(this.ordersKey);
+
+    if (!ordersExists) {
+      this.localStorageService.setItem(this.ordersKey, '{}');
+    }
+
+    const orders = JSON.parse(this.localStorageService.getItem(this.ordersKey));
+
+    const userOrders = orders[userId];
+
+    return userOrders || [];
+  }
+
   add(order: Order) {
     order.id = this.previousOrders.length + 1;
     const isPaymentCompleted = order.isPaymentCompleted;
@@ -51,8 +65,7 @@ export class OrderService {
   private saveOrderToStorage(order: Order): Order {
     if (this.userService.currentUser) {
       const userId = this.userService.currentUser.id;
-      const ordersExists =
-        typeof this.localStorageService.getItem(this.ordersKey) !== 'undefined';
+      const ordersExists = this.localStorageService.getItem(this.ordersKey);
 
       if (!ordersExists) {
         this.localStorageService.setItem(this.ordersKey, '{}');
