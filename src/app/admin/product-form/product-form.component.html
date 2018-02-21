@@ -1,0 +1,54 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="pannel-title">
+      product Form
+    </h4>
+  </div>
+  <div class="panel-body">
+    <form *ngIf="product" 
+      (ngSubmit)="saveproduct()"
+      id="product-form"
+      #form="ngForm">
+      <div class="form-group">
+        <label for="action">Action</label>
+        <input type="text" 
+          class="form-control" 
+          id="action"
+          name="action"
+          placeholder="Action"
+          required [(ngModel)]="product.action">
+      </div>
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        <input type="number" 
+          min="1" 
+          max="3"
+          class="form-control" 
+          id="priority"
+          name="priority"
+          placeholder="Priority"
+          [(ngModel)]="product.priority">
+      </div>
+      <div class="form-group">
+        <label for="estHours">Est. Hours</label>
+        <input type="number" 
+          min="0"
+          step="2"
+          class="form-control"
+          id="estHours"
+          name="estHours"
+          placeholder="Est. Hours"
+          [(ngModel)]="product.estHours">
+      </div>
+      <button type="submit"
+        class="btn btn-primary"
+        form="product-form"
+        [disabled]="form.invalid">Save
+      </button>
+      <button type="button"
+        class="btn btn-primary"
+        (click)="goBack()">Back
+      </button>
+    </form>
+  </div>
+</div>

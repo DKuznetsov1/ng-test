@@ -78,11 +78,19 @@ export class ProductService {
     return Promise.resolve(existingItem);
   }
 
-  add(newProduct): Promise<IProduct> {
+  create(newProduct: IProduct): Promise<IProduct> {
     const addedProduct = {...newProduct};
     addedProduct.id = this._nextId++;
     this._products.push(addedProduct);
     return Promise.resolve(addedProduct);
   }
 
+  update(product: IProduct): Promise<IProduct> {
+    const i = this._products.findIndex(t => t.id === product.id);
+
+    if (i > -1) {
+      this._products.splice(i, 1, product);
+    }
+    return Promise.resolve(product);
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from '../../models';
+import { ProductService } from '../../services';
 
 @Component({
   selector: 'app-manage-products',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageProductsComponent implements OnInit {
 
-  constructor() { }
+  products: IProduct[];
 
-  ngOnInit() {
+  constructor(
+    public productService: ProductService
+  ) { }
+
+  async ngOnInit() {
+    this.products = await this.productService.getProducts();
   }
 
 }

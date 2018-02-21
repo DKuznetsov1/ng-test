@@ -1,3 +1,20 @@
-<p>
-  manage-tasks works!
-</p>
+<h2>Manage products</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Edit</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price | currency : 'UAH' }}</td>
+        <td><button class="btn btn-warning" [routerLink]="['edit', product.id]">Edit</button></td>
+      </tr>
+  </tbody>
+</table>
