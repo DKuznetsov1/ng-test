@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CartService, OrderService, UserService } from './services';
-import { OrderItem, Order } from './models';
+import { CartService, OrderService, UserService } from './core/services';
+import { OrderItem, Order } from './core/models';
 
 @Component({
   selector: 'app-root',

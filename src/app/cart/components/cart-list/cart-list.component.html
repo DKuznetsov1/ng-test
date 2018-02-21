@@ -15,8 +15,8 @@
     <li *ngFor="let item of cartItems | cartsort : sortCriteria : isDescending" [ngClass]="{ selected: isSelected(item) }">
       <app-cart-item 
         [cartItem]="item" 
-        (removeEvent)="onRemoveCartItem($event)"
-        (selectEvent)="onSelect($event)"
+        (remove)="onRemoveCartItem($event)"
+        (select)="onSelect($event)"
         ></app-cart-item>
     </li>
   </ul>

@@ -1,5 +1,5 @@
+<h2 class="caption">Previous orders:</h2>
 <div class="margin-top-40 col-md-10" *ngIf="hasItems()">
-    <p class="caption">Previous orders:</p>
     <ul>
       <li *ngFor="let item of previousOrders"
         [class.success]="item.isPaymentCompleted"

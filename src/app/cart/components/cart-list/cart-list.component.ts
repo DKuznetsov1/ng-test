@@ -2,8 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CartItem, OrderItem, Order, Product } from '../../../models';
-import { CartService, OrderService } from '../../../services';
+import { CartItem, OrderItem, Order, Product } from '../../../core/models';
+import { CartService, OrderService } from '../../../core/services';
 
 @Component({
   selector: 'app-cart',

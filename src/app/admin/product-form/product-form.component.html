@@ -1,44 +1,47 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="pannel-title">
-      product Form
+      Product Form (ID = {{ product.id || '?' }})
     </h4>
   </div>
   <div class="panel-body">
     <form *ngIf="product" 
-      (ngSubmit)="saveproduct()"
+      (ngSubmit)="saveProduct()"
       id="product-form"
       #form="ngForm">
       <div class="form-group">
-        <label for="action">Action</label>
+        <label for="name">Name</label>
         <input type="text" 
           class="form-control" 
-          id="action"
-          name="action"
-          placeholder="Action"
-          required [(ngModel)]="product.action">
+          id="name"
+          name="name"
+          placeholder="Name"
+          required [(ngModel)]="product.name">
       </div>
       <div class="form-group">
-        <label for="priority">Priority</label>
-        <input type="number" 
-          min="1" 
-          max="3"
+        <label for="description">Description</label>
+        <input type="text" 
           class="form-control" 
-          id="priority"
-          name="priority"
-          placeholder="Priority"
-          [(ngModel)]="product.priority">
+          id="description"
+          name="description"
+          placeholder="Description"
+          [(ngModel)]="product.description">
       </div>
       <div class="form-group">
-        <label for="estHours">Est. Hours</label>
-        <input type="number" 
-          min="0"
-          step="2"
-          class="form-control"
-          id="estHours"
-          name="estHours"
-          placeholder="Est. Hours"
-          [(ngModel)]="product.estHours">
+        <label for="description">Description</label>
+        <textarea type="text" 
+          class="form-control" 
+          id="longDescription"
+          name="longDescription"
+          placeholder="Full Description"
+          [(ngModel)]="product.longDescription"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="isAvailable">Availability</label>
+        <input type="checkbox" 
+          id="isAvailable"
+          name="isAvailable"
+          [(ngModel)]="product.isAvailable">
       </div>
       <button type="submit"
         class="btn btn-primary"

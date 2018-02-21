@@ -1,9 +1,9 @@
-import { Directive, Host, Optional, ElementRef, Input, HostListener, AfterViewInit, Renderer2 } from '@angular/core';
+import { Directive, Host, Optional, ElementRef, Input, HostListener, AfterViewInit, Renderer2, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appBorder]'
 })
-export class BorderDirective implements AfterViewInit {
+export class BorderDirective implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('appBorder') color: string;
 
@@ -17,8 +17,8 @@ export class BorderDirective implements AfterViewInit {
   @HostListener('mouseleave') onMouseLeave() {
     this.setBorderColor('rgba(0, 0, 0, 0)');
   }
-
-  ngAfterViewInit() {
+  ngOnInit() {
+  // ngAfterViewInit() {
     console.log('appBorder AfterViewInit');
     this.renderer.setStyle(
       this.el.nativeElement,

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
 
-import { CartItem } from '../../../models';
+import { CartItem } from '../../../core/models';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,10 +9,10 @@ import { CartItem } from '../../../models';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
-  @Output() removeEvent: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-  @Output() selectEvent: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-  @Output() enableHightlightEvent: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-  @Output() disableHightlightEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() remove: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() select: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() enableHightlight: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() disableHightlight: EventEmitter<void> = new EventEmitter<void>();
   @HostBinding('class.highlighted') isHighlighted: boolean;
 
   constructor() { }
@@ -28,12 +28,12 @@ export class CartItemComponent implements OnInit {
     this.cartItem.isEditMode = !this.cartItem.isEditMode;
   }
 
-  remove() {
-    this.removeEvent.emit(this.cartItem);
+  removeCartItem() {
+    this.remove.emit(this.cartItem);
   }
 
-  @HostListener('click') select() {
-    this.selectEvent.emit(this.cartItem);
+  @HostListener('click') selectItem() {
+    this.select.emit(this.cartItem);
   }
 
   @HostListener('mouseenter') enableHighlight() {

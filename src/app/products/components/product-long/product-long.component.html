@@ -7,7 +7,7 @@
       <input type="checkbox" [checked]="product.isAvailable" readonly disabled>
   </p>
   
-  <p><b>ingredients: </b>{{product.ingredients.join(', ')}}</p>
+  <p><b>ingredients: </b>{{product.ingredients?.join(', ')}}</p>
   <p *ngIf="hasEquivalents()"><b>equivalents: </b>{{product.equivalents.join(', ')}}</p>
   <div class="form-inline">
     <input type="number" value="1" class="form-control" min="1"
@@ -17,7 +17,7 @@
       [disabled]="getDisabledAttrValue()">
     <input type="button" value="Add to cart" class="btn btn-primary" 
       [disabled]="getDisabledAttrValue()"
-      (click)="addToCart(amount.value)">
+      (click)="addProductToCart(amount.value)">
   </div>
 </div>
 <hr>

@@ -4,8 +4,8 @@ import { Location } from '@angular/common';
 
 import { switchMap } from 'rxjs/operators';
 
-import { IProduct, Product, ProductCategory } from './../../models';
-import { ProductService } from './../../services';
+import { IProduct, Product, ProductCategory } from './../../core/models';
+import { ProductService } from './../../core/services';
 
 @Component({
   templateUrl: './product-form.component.html',
@@ -36,11 +36,11 @@ export class ProductFormComponent implements OnInit {
     );
   }
 
-  saveTask() {
-    const task = {...this.product};
+  saveProduct() {
+    const product = {...this.product};
 
-    const method = task.id ? 'update' : 'create';
-    this.productService[method](task)
+    const method = product.id ? 'update' : 'create';
+    this.productService[method](product)
       .then( () => this.goBack() );
 
   }

@@ -3,7 +3,7 @@
     <li *ngFor="let product of products" >
       <app-product-short
         [product]="product"
-        (addToCartEvent)="onAddToCart($event)"
+        (addToCart)="onAddToCart($event)"
         (select)="onSelect($event)"
         ></app-product-short>
     </li>

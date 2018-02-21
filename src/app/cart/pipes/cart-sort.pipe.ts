@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CartItem } from '../../models';
+import { CartItem } from '../../core/models';
 
 @Pipe({
   name: 'cartsort'
@@ -15,6 +15,8 @@ export class CartSortPipe implements PipeTransform {
     return result;
   }
 
+  // Gets property value of object by dot separated string path
+  // a.b.c => a['b.c']
   private byString = function(o, s) {
       s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
       s = s.replace(/^\./, '');           // strip a leading dot
@@ -30,6 +32,8 @@ export class CartSortPipe implements PipeTransform {
       return o;
   };
 
+  // Sorts array using property value by given property path as criteria
+  // If property under the given path is a function invokes it to get result
   private sortBy(items: Array<CartItem>, property: string, desc: boolean): any {
     const result = items.sort((a: CartItem, b: CartItem) => {
       let aValue = this.byString(a, property);

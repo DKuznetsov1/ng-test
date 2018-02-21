@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Order } from '../../../models';
+import { Order } from '../../../core/models';
 
 @Component({
   selector: 'app-order',

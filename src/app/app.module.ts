@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
 
-import { ProductService, CartService, LocalStorageService, UserService } from './services';
+import { ProductService, CartService, LocalStorageService, UserService, OrderService } from './core/services';
 import { OrderModule } from './order/order.module';
 
 import { CoreModule } from './core/core.module';
@@ -27,7 +27,7 @@ import { AppRoutingModule, appRouterComponents } from './app.routing.module';
     OrderModule,
     AppRoutingModule
   ],
-  providers: [ProductService, CartService, LocalStorageService, UserService],
+  providers: [ProductService, CartService, LocalStorageService, UserService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

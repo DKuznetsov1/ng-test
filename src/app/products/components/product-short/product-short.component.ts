@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { IProduct, ProductCategory, OrderItem } from '../../../models';
+import { IProduct, ProductCategory, OrderItem } from '../../../core/models';
 
 @Component({
   selector: 'app-product-short',
@@ -9,7 +9,7 @@ import { IProduct, ProductCategory, OrderItem } from '../../../models';
 })
 export class ProductShortComponent implements OnInit {
   @Input() product: IProduct;
-  @Output() addToCartEvent: EventEmitter<OrderItem> = new EventEmitter<OrderItem>();
+  @Output() addToCart: EventEmitter<OrderItem> = new EventEmitter<OrderItem>();
   @Output() select: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
   private readonly noDescription: string = 'Description missing';
@@ -20,8 +20,8 @@ export class ProductShortComponent implements OnInit {
     // console.log('ProductShortComponent init');
   }
 
-  addToCart(amount: string) {
-    this.addToCartEvent.emit(new OrderItem(this.product, parseFloat(amount)));
+  addProductToCart(amount: string) {
+    this.addToCart.emit(new OrderItem(this.product, parseFloat(amount)));
   }
 
   selectItem() {

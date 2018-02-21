@@ -17,6 +17,8 @@ const routes: Routes = [
           { path: 'products', component: ManageProductsComponent },
           { path: 'order-history', component: ManageOrderHistoryComponent },
           { path: 'products/edit/:id', component: ProductFormComponent },
+          { path: 'products/add', component: ProductFormComponent
+          },
           { path: '', component: AdminDashboardComponent }
         ]
       }

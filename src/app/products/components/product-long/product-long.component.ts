@@ -3,8 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
 
-import { IProduct, ProductCategory, OrderItem } from '../../../models';
-import { ProductService, CartService } from '../../../services';
+import { IProduct, ProductCategory, OrderItem } from '../../../core/models';
+import { ProductService, CartService } from '../../../core/services';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -42,7 +42,7 @@ export class ProductLongComponent implements OnInit, OnDestroy {
     this._sub.unsubscribe();
   }
 
-  addToCart(amount: string) {
+  addProductToCart(amount: string) {
     console.log('adding to cart.');
     const orderItem = new OrderItem(this.product, parseFloat(amount));
     this.cartService.add(orderItem);
