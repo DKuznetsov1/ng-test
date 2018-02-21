@@ -9,6 +9,13 @@ Pipes are applied for:
 - order process (update) date (date, async)
 - cart items order (custom pipe: by name, price, amount)
 
+# Task5
+Guarded admin route.
+Saving users and order history to local storage.
+Clear users.
+Browse order history by user.
+Add/Edit products.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
 
 ## Development server
