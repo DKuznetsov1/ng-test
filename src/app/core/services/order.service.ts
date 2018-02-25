@@ -22,7 +22,7 @@ export class OrderService {
     const ordersExists = this.localStorageService.getItem(this.ordersKey);
 
     if (!ordersExists) {
-      this.localStorageService.setItem(this.ordersKey, '{}');
+      this.localStorageService.setItem(this.ordersKey, {});
     }
 
     const orders = JSON.parse(this.localStorageService.getItem(this.ordersKey));
@@ -40,12 +40,14 @@ export class OrderService {
       setTimeout(() => resolve(new Date()), 2000);
     }).then((val) => {
       order.isPaymentCompleted = isPaymentCompleted;
+      const jsonOrder: any = {...order};
+      jsonOrder.orderDate = val;
+      this.saveOrderToStorage(jsonOrder);
       return val;
     });
 
     order.orderDate = processDatePromise;
     this.previousOrders.push(order);
-    this.saveOrderToStorage(order);
   }
 
   removeOrdersForUser(userId: string) {
@@ -55,11 +57,11 @@ export class OrderService {
       delete orders[userId];
     }
 
-    this.localStorageService.setItem(this.ordersKey, JSON.stringify(orders));
+    this.localStorageService.setItem(this.ordersKey, orders);
   }
 
   removeAll() {
-    this.localStorageService.setItem(this.ordersKey, '{}');
+    this.localStorageService.setItem(this.ordersKey, {});
   }
 
   private saveOrderToStorage(order: Order): Order {
@@ -68,7 +70,7 @@ export class OrderService {
       const ordersExists = this.localStorageService.getItem(this.ordersKey);
 
       if (!ordersExists) {
-        this.localStorageService.setItem(this.ordersKey, '{}');
+        this.localStorageService.setItem(this.ordersKey, {});
       }
 
       const orders = JSON.parse(this.localStorageService.getItem(this.ordersKey));
@@ -80,7 +82,7 @@ export class OrderService {
       }
 
       orders[userId].push(order);
-      this.localStorageService.setItem(this.ordersKey, JSON.stringify(orders));
+      this.localStorageService.setItem(this.ordersKey, orders);
 
       return order;
     }

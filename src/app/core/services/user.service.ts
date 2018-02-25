@@ -41,7 +41,7 @@ export class UserService {
   removeAllExceptCurrent(): void {
     const users = {};
     users[this.currentUser.id] = this.currentUser;
-    this.localStorageService.setItem(this.usersKey, JSON.stringify(users));
+    this.localStorageService.setItem(this.usersKey, users);
 
     this.publishUsersChange(users);
   }
@@ -66,13 +66,13 @@ export class UserService {
     const hasUsers = this.usersObjectExist();
 
     if (!hasUsers) {
-      this.localStorageService.setItem(this.usersKey, '{}');
+      this.localStorageService.setItem(this.usersKey, {});
     }
 
     const users = JSON.parse(this.localStorageService.getItem(this.usersKey));
 
     users[user.id] = user;
-    this.localStorageService.setItem(this.usersKey, JSON.stringify(users));
+    this.localStorageService.setItem(this.usersKey, users);
 
     this.publishUsersChange(users);
 

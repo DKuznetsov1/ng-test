@@ -37,6 +37,15 @@
           [(ngModel)]="product.longDescription"></textarea>
       </div>
       <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" 
+          class="form-control" 
+          id="price"
+          name="price"
+          min="0"
+          [(ngModel)]="product.price">
+      </div>
+      <div class="form-group">
         <label for="isAvailable">Availability</label>
         <input type="checkbox" 
           id="isAvailable"

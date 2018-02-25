@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CartService, OrderService, UserService } from './core/services';
+import { CartService, OrderService, UserService, HttpService } from './core/services';
 import { OrderItem, Order } from './core/models';
 
 @Component({
@@ -14,11 +14,13 @@ export class AppComponent implements OnInit {
   constructor(
     public userService: UserService,
     public cartService: CartService,
-    public orderService: OrderService) {
+    public orderService: OrderService,
+    public httpService: HttpService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // console.log('AppComponent init');
+    await this.httpService.init();
     const user = this.userService.createAnonymousUser();
     this.userService.setUser(user);
   }

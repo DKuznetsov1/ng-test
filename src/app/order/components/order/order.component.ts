@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(JSON.stringify(this.order));
+    // console.log(JSON.stringify(this.order));
   }
 
   orderPrice(): number {

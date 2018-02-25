@@ -1,0 +1,141 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "test name1111",
+      "price": 11,
+      "category": 1,
+      "isAvailable": true,
+      "ingredients": [
+        "ingr1",
+        "ingr2"
+      ],
+      "description": "test desc1",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "equivalents": [
+        "eq1",
+        "eq2"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "test name2",
+      "price": 22,
+      "category": 0,
+      "isAvailable": true,
+      "ingredients": [
+        "ingr3",
+        "ingr4"
+      ],
+      "description": "test desc2",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+    },
+    {
+      "id": 3,
+      "name": "test name3",
+      "price": 33,
+      "category": 1,
+      "isAvailable": true,
+      "ingredients": [
+        "ingr1",
+        "ingr3"
+      ],
+      "description": "test desc3",
+      "equivalents": [
+        "eq1",
+        "eq2"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "test name4",
+      "price": 44,
+      "category": 0,
+      "isAvailable": true,
+      "ingredients": [
+        "ingr4",
+        "ingr2"
+      ],
+      "description": "test desc4",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "equivalents": [
+        "eq1",
+        "eq2"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "test name5",
+      "price": 55,
+      "category": 1,
+      "isAvailable": false,
+      "ingredients": [
+        "ingr3",
+        "ingr5"
+      ],
+      "description": "test desc5",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+    },
+    {
+      "id": 6,
+      "name": "test name6",
+      "price": 66,
+      "category": 0,
+      "isAvailable": true,
+      "ingredients": [
+        "ingr4",
+        "ingr6"
+      ],
+      "description": "test desc6",
+      "equivalents": [
+        "eq1",
+        "eq2"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "test name7",
+      "price": 77,
+      "category": 1,
+      "isAvailable": false,
+      "ingredients": [
+        "ingr1",
+        "ingr7"
+      ],
+      "description": "test desc7",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "equivalents": [
+        "eq1",
+        "eq2"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "test name8",
+      "price": 88,
+      "category": 0,
+      "isAvailable": true,
+      "ingredients": [
+        "ingr2",
+        "ingr8"
+      ],
+      "description": "test desc8",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+    },
+    {
+      "name": "esdas",
+      "description": "dsadas",
+      "longDescription": "dsadsa",
+      "isAvailable": true,
+      "id": 9,
+      "price": 123
+    },
+    {
+      "name": "fgsdfsd",
+      "description": "fdsfds",
+      "longDescription": "fdsfds",
+      "price": 541,
+      "id": 10
+    }
+  ]
+}

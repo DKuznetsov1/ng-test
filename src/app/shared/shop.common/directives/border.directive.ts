@@ -18,8 +18,6 @@ export class BorderDirective implements OnInit {
     this.setBorderColor('rgba(0, 0, 0, 0)');
   }
   ngOnInit() {
-  // ngAfterViewInit() {
-    console.log('appBorder AfterViewInit');
     this.renderer.setStyle(
       this.el.nativeElement,
       'borderWidth',

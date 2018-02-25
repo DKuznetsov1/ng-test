@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 import { IProduct, Product, ProductCategory } from './../../core/models';
 import { ProductService } from './../../core/services';
@@ -41,8 +41,10 @@ export class ProductFormComponent implements OnInit {
 
     const method = product.id ? 'update' : 'create';
     this.productService[method](product)
-      .then( () => this.goBack() );
-
+    .subscribe(
+      () => this.location.back(),
+      error => console.log(error)
+    );
   }
 
   goBack(): void {
