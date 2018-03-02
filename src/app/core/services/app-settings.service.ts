@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { toPromise } from 'rxjs/operator/toPromise';
 
 import { Config } from './../../core/models';
-import { LocalStorageService } from '.';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class AppSettingsService {

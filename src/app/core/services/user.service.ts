@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { User } from '../models';
-import { LocalStorageService } from './';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class UserService {

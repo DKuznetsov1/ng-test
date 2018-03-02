@@ -1,4 +1,5 @@
 <h2>Manage products</h2>
+<p *ngIf="(tasksError$ | async) as errorMessage">{{errorMessage}}</p>
 <button class="btn btn-success" (click)="addProduct()">Add product</button>
 <table>
   <tbody>
@@ -9,7 +10,7 @@
       <th>Price</th>
       <th>Edit</th>
     </tr>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products$ | async">
         <td>{{ product.id }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.description }}</td>

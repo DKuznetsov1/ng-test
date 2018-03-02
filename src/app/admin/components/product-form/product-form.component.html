@@ -1,7 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="pannel-title">
-      Product Form (ID = {{ product.id || '?' }})
+      Product Form (ID = {{ product.id || '?' }}) 
+      <button class="btn btn-danger" *ngIf="product.id" (click)="deleteProduct()">Delete</button>
     </h4>
   </div>
   <div class="panel-body">

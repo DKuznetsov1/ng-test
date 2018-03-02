@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Product, ProductCategory, IProduct } from '../models';
-import { HttpService } from '.';
+import { HttpService } from './http.service';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -28,5 +28,10 @@ export class ProductService {
   update(product: IProduct): Observable<IProduct> {
     const updatedProduct = {...product};
     return this.httpService.put<IProduct>(this.productsUrl + '/' + updatedProduct.id, updatedProduct);
+  }
+
+  delete(product: IProduct): Observable<IProduct> {
+    const updatedProduct = {...product};
+    return this.httpService.delete<IProduct>(this.productsUrl + '/' + updatedProduct.id, updatedProduct);
   }
 }

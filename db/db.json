@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "test name1111",
-      "price": 11,
+      "price": 111,
       "category": 1,
       "isAvailable": true,
       "ingredients": [

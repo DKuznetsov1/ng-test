@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { UserService } from '../../core/services';
-import { User } from '../../core/models';
+import { UserService } from '../../../core/services';
+import { User } from '../../../core/models';
 
 @Component({
   selector: 'app-admin-dashboard',

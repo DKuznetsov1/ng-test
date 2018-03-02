@@ -1,6 +1,8 @@
+<p *ngIf="(tasksError$ | async) as errorMessage">{{errorMessage}}</p>
+
 <div>
   <ul>
-    <li *ngFor="let product of products" >
+    <li *ngFor="let product of products$ | async">
       <app-product-short
         [product]="product"
         (addToCart)="onAddToCart($event)"

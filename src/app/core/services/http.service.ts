@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
 import { map, catchError } from 'rxjs/operators';
 
-import { AppSettingsService } from '.';
+import { AppSettingsService } from './app-settings.service';
 
 @Injectable()
 export class HttpService {
@@ -51,6 +51,15 @@ export class HttpService {
          map( this.handleData ),
          catchError( this.handleObservableError )
        );
+   }
+
+  delete<T>(url, obj): Observable<T> {
+    return this.http
+      .delete(this.baseUrl + url)
+      .pipe(
+        map( this.handleData ),
+        catchError( this.handleObservableError )
+      );
    }
 
   private handleData<T> (response: HttpResponse<T>) {

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Order } from '../models/order.model';
-import { LocalStorageService, UserService } from '.';
+import { LocalStorageService } from './local-storage.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class OrderService {

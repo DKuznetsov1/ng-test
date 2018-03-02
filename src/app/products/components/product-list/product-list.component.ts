@@ -1,7 +1,13 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OrderItem, IProduct } from '../../../core/models';
+// @Ngrx
+import { Store } from '@ngrx/store';
+import * as ProductsActions from './../../../+store/actions/products.actions';
+import { AppState, getProducts, getProductsError } from './../../../+store';
+import * as RouterActions from '../../../+store/actions/router.actions';
+
+import { OrderItem, Product } from '../../../core/models';
 import { ProductService, CartService } from '../../../core/services';
 
 @Component({
@@ -11,26 +17,26 @@ import { ProductService, CartService } from '../../../core/services';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Array<IProduct>;
+  products$: Store<Product[]>;
+  productsError$: Store<Error | string>;
 
   constructor(
     public cartService: CartService,
-    public productService: ProductService,
-    public router: Router) { }
+    private store: Store<AppState>) { }
 
   async ngOnInit() {
-    // console.log('ProductListComponent init');
-    this.products = await this.productService.getProducts();
+    this.products$ = this.store.select(getProducts);
+    this.productsError$ = this.store.select(getProductsError);
   }
 
   onAddToCart(orderItem: OrderItem) {
-    console.log('adding to cart.');
     this.cartService.add(orderItem);
   }
 
-  onSelect(product: IProduct) {
-    console.log('product select');
-    this.router.navigate(['home', { outlets: { details: ['product', product.id ] } }]);
+  onSelect(product: Product) {
+    this.store.dispatch(new RouterActions.Go({
+      path: ['home', { outlets: { details: ['product', product.id ] } }]
+    }));
   }
 
 }

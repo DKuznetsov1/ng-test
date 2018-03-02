@@ -3,8 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { UserService, OrderService } from './../../core/services';
-import { Order } from './../../core/models';
+import { UserService, OrderService } from '../../../core/services';
+import { Order } from '../../../core/models';
 
 @Component({
   selector: 'app-manage-order-history',

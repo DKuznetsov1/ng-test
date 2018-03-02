@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductLongComponent, ProductListComponent } from './components';
 import { ProductsComponent } from './products.component';
 
+import * as Guards from '../core/guards';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -11,7 +13,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ProductListComponent
+        component: ProductListComponent,
+        canActivate: [Guards.ProductsStatePreloadingGuard],
       },
       {
         path: 'product/:id',
@@ -28,6 +31,9 @@ export const productsRouterComponents = [ProductsComponent, ProductLongComponent
   imports: [
     RouterModule.forChild(routes)
   ],
-exports: [RouterModule]
+  providers: [
+    ...Guards.allGuards
+  ],
+  exports: [RouterModule]
 })
 export class ProductRoutingModule { }
