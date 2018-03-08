@@ -21,7 +21,7 @@ export class AppSettingsService {
     const existingConfig = JSON.parse(this.localStorageService.getItem(this.configKey));
 
     if (!existingConfig) {
-      this.http.get('assets/app-settings.json')
+      return this.http.get('assets/app-settings.json')
         .toPromise()
         .then((configFromFile) => {
           const config = configFromFile || new Config('localhost');
