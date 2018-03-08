@@ -33,6 +33,7 @@ export const appRouterComponents = [AppComponent, PageNotFoundComponent];
 
 const extraOptions: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
+  onSameUrlNavigation: 'reload', // seems doesnt work now https://stackoverflow.com/questions/47145264/angular-5-onsameurlnavigation
   // enableTracing: true
 };
 

@@ -93,7 +93,7 @@ export class ProductsEffects {
     )
     .pipe(
       map(action => new RouterActions.Go({
-        path: ['/admin']
+        path: ['admin', 'products']
       }))
   );
 

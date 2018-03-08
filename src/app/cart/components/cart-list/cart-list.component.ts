@@ -71,17 +71,20 @@ export class CartListComponent implements OnInit {
     console.log('buy cart.');
     const orderItems = this.cartItems.map(x => x.orderItem);
 
-    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, true));
-    this.cartService.emptyCart();
-    this.router.navigate(['orders']);
+    const order = new Order(0, orderItems.map(x => Object.assign({}, x)), null);
+
+    const orderId = this.orderService.add(order);
+
+    this.router.navigate(['orders', 'form']);
   }
 
   cancelCart() {
     console.log('cancel cart.');
     const orderItems = this.cartItems.map(x => x.orderItem);
 
-    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null, false));
-    this.cartService.emptyCart();
+    this.orderService.add(new Order(0, orderItems.map(x => Object.assign({}, x)), null));
+
+    this.orderService.cancelCurrent();
     this.router.navigate(['home']);
   }
 

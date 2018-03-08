@@ -1,0 +1,178 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Order# {{order.id}} - {{order.orderPrice() | currency : 'UAH'}}
+  </div>
+
+
+  <div class="panel-body">
+      <form class="form-horizontal"
+          novalidate
+          [formGroup]="orderForm"
+          (ngSubmit)="confirm()">
+          <fieldset>
+              <div class="form-group"
+                [ngClass]="{'has-error': (orderForm.get('firstName').touched || orderForm.get('firstName').dirty) && !orderForm.get('firstName').valid }">
+                  <label class="col-md-2 control-label"
+                         for="firstNameId">First Name</label>
+                  <div class="col-md-8">
+                      <input class="form-control"
+                             id="firstNameId"
+                             type="text"
+                             placeholder="First Name (required)"
+                             formControlName="firstName" />
+                  </div>
+              </div>
+
+              <div formArrayName="phones"
+                *ngFor="let phone of phones.controls; let i = index">
+                <div [formGroupName]="i"
+                  class="form-group"
+                  [ngClass]="{'has-error': (phone.touched || phone.dirty) && !phone.valid }">
+                  <label class="col-md-2 control-label"
+                      attr.for="{{ 'phoneId' + i }}">Phone {{ phones.controls.length > 1 ? '#' + (i + 1) : '' }}</label>
+
+                  <div class="col-md-7">
+                      <input class="form-control"
+                              id="{{ 'phoneId' + i }}"
+                              type="tel"
+                              placeholder="Phone (380XXXXXXXXX)"
+                              formControlName="phone" />
+                  </div>
+                  <div>
+                      <div class="col-md-2">
+                        <button *ngIf="isLastOrSingle(phones.controls, phone)"
+                          class="btn btn-primary"
+                          type="button"
+                          (click)="addPhone()">
+                          +
+                        </button>
+                        <button *ngIf="!isLastOrSingle(phones.controls, phone)"
+                          class="btn btn-danger"
+                          type="button"
+                          (click)="removePhone(phone)">
+                          -
+                        </button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group"
+                [ngClass]="{'has-error': (orderForm.get('email').touched || orderForm.get('email').dirty) && !orderForm.get('email').valid }">
+                  <label class="col-md-2 control-label"
+                      for="emailId">Email</label>
+
+                  <div class="col-md-8">
+                    <input class="form-control"
+                      id="emailId"
+                      type="email"
+                      placeholder="Email (required)"
+                      formControlName="email" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-md-offset-1 col-md-8 checkbox" >
+                      <label>
+                          <input id="sendProductsId"
+                                 type="checkbox" 
+                                 formControlName="sendProducts">
+                                 Delivery needed
+                      </label>
+                  </div>
+              </div>
+
+              <div *ngIf="orderForm.get('sendProducts').value">
+                <div class="form-group">
+                    <label class="col-md-2 control-label"
+                      for="countryId">Country, City, Zip Code</label>
+
+                    <div 
+                      [ngClass]="{'has-error': (orderForm.get('country').touched || orderForm.get('country').dirty) && !orderForm.get('country').valid }"
+                      class="col-md-3">
+                      <select class="form-control"
+                        id="countryId"
+                        formControlName="country">
+                        <option value="">Select a Country...</option>
+                        <option *ngFor="let country of countries"
+                          value="{{country}}">{{country}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3"
+                      [ngClass]="{'has-error': (orderForm.get('city').touched || orderForm.get('city').dirty) && !orderForm.get('city').valid }">
+                        <input type="text"
+                              class="form-control"
+                              id="cityId"
+                              placeholder="City"
+                              formControlName="city">
+                    </div>
+                    <div class="col-md-2"
+                    [ngClass]="{'has-error': (orderForm.get('zip').touched || orderForm.get('zip').dirty) && !orderForm.get('zip').valid }">
+                    <input type="text"
+                              class="form-control"
+                              id="zipId"
+                              placeholder="Zip Code"
+                              formControlName="zip">
+                    </div>
+                </div>
+
+                <div class="form-group"
+                  [ngClass]="{'has-error': (orderForm.get('street1').touched || orderForm.get('street1').dirty) && !orderForm.get('street1').valid }">
+                    <label class="col-md-2 control-label"
+                        for="street1Id">Street Address 1</label>
+                    <div class="col-md-8">
+                        <input type="text"
+                              class="form-control"
+                              id="street1Id"
+                              placeholder="Street address"
+                              formControlName="street1">
+                    </div>
+                </div>
+
+                <div class="form-group"
+                  [ngClass]="{'has-error': (orderForm.get('street2').touched || orderForm.get('street2').dirty) && !orderForm.get('street2').valid }">
+                    <label class="col-md-2 control-label"
+                        for="street2Id">Street Address 2</label>
+                    <div class="col-md-8">
+                        <input type="text"
+                              class="form-control"
+                              id="street2Id"
+                              placeholder="Street address (second line)"
+                              formControlName="street2">
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-md-8 col-md-offset-2 has-error"
+                *ngIf="errorMessages.length">
+              <span class="help-block">
+                <b>Please fill the form with correct data:</b>
+                <ul>
+                  <li *ngFor="let message of errorMessages">
+                    {{message}}
+                  </li>
+                </ul>
+              </span>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-md-4 col-md-offset-2">
+                      <span>
+                          <button class="btn btn-primary"
+                                  type="submit"
+                                  [disabled]="!orderForm.valid">
+                              Confirm
+                          </button>
+
+                          <button class="btn btn-primary"
+                                  type="button"
+                                  (click)="cancel()">
+                              Cancel
+                          </button>
+                      </span>
+                  </div>
+              </div>
+          </fieldset>
+      </form>
+  </div>
+</div>

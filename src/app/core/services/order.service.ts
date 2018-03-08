@@ -7,6 +7,8 @@ import { UserService } from './user.service';
 @Injectable()
 export class OrderService {
 
+  currentOrder: Order = null;
+
   private readonly ordersKey = 'orders';
   private previousOrders: Array<Order> = [];
 
@@ -17,6 +19,10 @@ export class OrderService {
 
   getAll() {
     return this.previousOrders;
+  }
+
+  clearCurrent() {
+    this.currentOrder = null;
   }
 
   getAllForUser(userId: string) {
@@ -33,22 +39,33 @@ export class OrderService {
     return userOrders || [];
   }
 
-  add(order: Order) {
+  add(order: Order): number {
     order.id = this.previousOrders.length + 1;
-    const isPaymentCompleted = order.isPaymentCompleted;
-    order.isPaymentCompleted = null;
-    const processDatePromise = new Promise<Date>((resolve, reject) => {
-      setTimeout(() => resolve(new Date()), 2000);
-    }).then((val) => {
-      order.isPaymentCompleted = isPaymentCompleted;
-      const jsonOrder: any = {...order};
-      jsonOrder.orderDate = val;
-      this.saveOrderToStorage(jsonOrder);
-      return val;
-    });
 
-    order.orderDate = processDatePromise;
+    order.orderDate = new Date();
     this.previousOrders.push(order);
+    this.currentOrder = order;
+    return order.id;
+  }
+
+  cancelCurrent() {
+    this.currentOrder.isPaymentCompleted = false;
+    this.currentOrder.orderDate = new Date();
+
+    const jsonOrder: any = {...this.currentOrder};
+    this.saveOrderToStorage(jsonOrder);
+
+    this.clearCurrent();
+  }
+
+  confirmCurrent() {
+    this.currentOrder.isPaymentCompleted = true;
+    this.currentOrder.orderDate = new Date();
+
+    const jsonOrder: any = {...this.currentOrder};
+    this.saveOrderToStorage(jsonOrder);
+
+    this.clearCurrent();
   }
 
   removeOrdersForUser(userId: string) {
