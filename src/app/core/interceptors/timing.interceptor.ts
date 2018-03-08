@@ -15,8 +15,10 @@ export class TimingInterceptor implements HttpInterceptor {
       // response interceptor
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          console.log('Request processed in ' + (new Date().valueOf() - startRequestTime.valueOf()) + ' ms');
-          return event;
+          if (event.url.includes('products') && startRequestTime) {
+            console.log('Request processed in ' + (new Date().valueOf() - startRequestTime.valueOf()) + ' ms');
+            return event;
+          }
         }
       })
     );
