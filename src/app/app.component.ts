@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CartService, OrderService, UserService, AppSettingsService } from './core/services';
+import { UserService, AppSettingsService } from './core/services';
 import { OrderItem, Order } from './core/models';
 
 @Component({
@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    public cartService: CartService,
     public appSettingsService: AppSettingsService) {
   }
 
