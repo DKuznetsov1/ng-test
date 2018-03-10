@@ -18,17 +18,9 @@ export class ProductListComponent implements OnInit {
     public productService: ProductService,
     public router: Router) { }
 
-<<<<<<< HEAD
   async ngOnInit() {
     // console.log('ProductListComponent init');
     this.products = await this.productService.getProducts();
-=======
-  ngOnInit() {
-    console.log('INIT Product List');
-    this.products$ = this.store.select(getProducts);
-    console.log('SELECT getProducts');
-    this.productsError$ = this.store.select(getProductsError);
->>>>>>> b5bf8aa... fixed getConfig
   }
 
   onAddToCart(orderItem: OrderItem) {
