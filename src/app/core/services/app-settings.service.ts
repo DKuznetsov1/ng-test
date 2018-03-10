@@ -24,7 +24,7 @@ export class AppSettingsService {
       return this.http.get('assets/app-settings.json')
         .toPromise()
         .then((configFromFile) => {
-          const config = configFromFile || new Config('localhost');
+          const config = <Config>configFromFile || new Config('def1', 'def2', 'def3');
           console.log('Got config from file or default');
           this.saveConfig(config);
           return config;

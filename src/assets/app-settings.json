@@ -1,3 +1,5 @@
 {
-  "apiUrl": "http://localhost:3000/"
+  "setting1": "test1",
+  "setting2": "test2",
+  "setting3": "test3"
 }

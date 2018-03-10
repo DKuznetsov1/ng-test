@@ -24,8 +24,10 @@ export class ProductListComponent implements OnInit {
     public cartService: CartService,
     private store: Store<AppState>) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    console.log('INIT Product List');
     this.products$ = this.store.select(getProducts);
+    console.log('SELECT getProducts');
     this.productsError$ = this.store.select(getProductsError);
   }
 

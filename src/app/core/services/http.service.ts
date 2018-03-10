@@ -12,10 +12,9 @@ import { AppSettingsService } from './app-settings.service';
 @Injectable()
 export class HttpService {
 
-  private baseUrl: string;
+  private baseUrl = 'http://localhost:3000/';
 
   constructor(
-    public appSettingsService: AppSettingsService,
     private http: HttpClient) {}
 
   // Promise approach
@@ -65,14 +64,6 @@ export class HttpService {
   private handleData<T> (response: HttpResponse<T>) {
     const body = response;
     return body || {};
-  }
-
-  async init() {
-    this.baseUrl = (await this.appSettingsService.getConfig()).apiUrl;
-
-    if (!this.baseUrl) {
-      throw new Error('baseUrl is empty');
-    }
   }
 
   private handleObservableError(err: HttpErrorResponse) {
