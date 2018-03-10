@@ -12,11 +12,11 @@ export class ProductsComponent implements OnInit {
   }
 
   onActivate($event) {
-    console.log('Activated Component', $event);
+    // console.log('Activated Component', $event);
   }
 
   onDeactivate($event) {
-    console.log('Deactivated Component', $event);
+    // console.log('Deactivated Component', $event);
   }
 
 }

@@ -3,7 +3,9 @@
 */
 export class Config {
   constructor(
-    public apiUrl?: string
+    public setting1: string,
+    public setting2: string,
+    public setting3: string
   ) {
   }
 }
