@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OrdersRoutingModule, ordersRouterComponents } from './order.routing.module';
 import { OrderExistGuard } from './guards';
+import { FormHelperService } from './services';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { OrderExistGuard } from './guards';
   ],
   providers: [
     OrderExistGuard,
+    FormHelperService
   ],
   declarations: [ordersRouterComponents],
   exports: []

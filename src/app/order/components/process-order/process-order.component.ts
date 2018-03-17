@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
 import { Order, OrderItem, Product, ProductCategory } from '../../../core/models';
 import { OrderService, CartService } from '../../../core/services';
+import { FormHelperService } from '../../services';
 import { Subscription } from 'rxjs/Subscription';
 import { AutoUnsubscribe } from '../../../core';
 
@@ -32,14 +33,9 @@ export class ProcessOrderComponent implements OnInit {
     private formBuilder: FormBuilder,
     private orderService: OrderService,
     private cartService: CartService,
+    private formHelperService: FormHelperService,
     private router: Router
   ) {
-    this.errorMessages = [];
-    this.firstNameMinLength = 3;
-    this.cityMinLength = 2;
-    this.countryMinLength = 1;
-    this.street1MinLength = 4;
-    this.street2MinLength = 4;
   }
 
   get phones(): FormArray {
@@ -47,21 +43,14 @@ export class ProcessOrderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.errorMessages = [];
+    this.firstNameMinLength = 3;
+    this.cityMinLength = 2;
+    this.countryMinLength = 1;
+    this.street1MinLength = 4;
+    this.street2MinLength = 4;
+
     this.order = this.orderService.currentOrder;
-    if (!this.order) {
-      console.log('WRONG!!!');
-        this.order = new Order(
-        1,
-        [
-          new OrderItem(
-            new Product(1, '', 123, ProductCategory.Drink, true, []),
-            2
-          )
-        ],
-        new Date(),
-        true
-      );
-    }
 
     this.buildForm();
     this.listenChanges();
@@ -90,53 +79,8 @@ export class ProcessOrderComponent implements OnInit {
     });
   }
 
-  private formRequiredFailed(fieldName: string): string {
-    return `Field ${fieldName} is required`;
-  }
-
-  private formMinLengthFailed(fieldName: string, min: number): string {
-    return `Field ${fieldName} is too short (${min} characters minimum)`;
-  }
-
-  private formPatternFailed(fieldName: string): string {
-    return `Field ${fieldName} has incorrect format`;
-  }
-
   private formErrorMessages(): string[] {
-    const result = [];
-    Object.keys(this.orderForm.controls).forEach((key) => {
-      result.push(...(this.formErrorMessageForField(key)));
-    });
-
-    return result;
-  }
-
-  private formErrorMessageForField(fieldName: string): string[] {
-    const formControl = this.orderForm.get(fieldName);
-
-    const isFormGroup = (<FormGroup>formControl).controls;
-
-    if (isFormGroup && !formControl.valid) {
-      return [`${fieldName} has some invalid fields`];
-    }
-
-    if (formControl && formControl.errors) {
-      return Object.keys(formControl.errors)
-        .map((key) => {
-          switch (key) {
-            case 'required':
-            return this.formRequiredFailed(fieldName);
-            case 'minlength':
-            return this.formMinLengthFailed(fieldName, this[fieldName + 'MinLength']);
-            case 'pattern':
-            return this.formPatternFailed(fieldName);
-            default:
-            return null;
-          }
-        })
-        .filter((x) => x);
-    }
-    return [];
+    return this.formHelperService.formErrorMessages(this.orderForm);
   }
 
   private listenChanges(): void {
